@@ -75,9 +75,9 @@ public class TestExceptions {
 		
 		System.out.println("End of example");
 		
-		doSomething(2);
-		//doSomething(0);
-		//doSomething(5);
+		doSomething(2);			//-> no exceptions
+		//doSomething(0);		//-> DivisionByZero
+		//doSomething(5);		//-> generic Catch
 		
 	}
 
