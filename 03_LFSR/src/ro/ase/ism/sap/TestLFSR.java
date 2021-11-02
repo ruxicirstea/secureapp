@@ -23,10 +23,10 @@ public class TestLFSR {
 		byte lastBitFrom3rdByte = (byte) ((1 & register[2]));
 
 		// shift the register
-		register[0] = (byte) (register[0] >>> 1);
-		register[1] = (byte) (register[1] >>> 1);
-		register[2] = (byte) (register[2] >>> 1);
-		register[3] = (byte) (register[3] >>> 1);
+		register[0] = (byte) ((register[0] >>> 1)& 0b01111111);
+		register[1] = (byte) ((register[1] >>> 1)& 0b01111111);
+		register[2] = (byte) ((register[2] >>> 1)& 0b01111111);
+		register[3] = (byte) ((register[3] >>> 1)& 0b01111111);
 
 		// insert the previous byte bit into the next byte
 		register[0] = (byte) (register[0] | (nextBit << 7));
@@ -70,11 +70,11 @@ public class TestLFSR {
 				// get the value of the x^31 bit -> the 8th (right to left)
 				// bit in the 1st byte of the register
 
-				byte bit32Value = (byte) ((firstByte8bitMask & register[0]) >>> 7);
-				byte bit8Value = (byte) ((bit8Mask & register[3]) >>> 7);
-				byte bit6Value = (byte) ((bit6Mask & register[3]) >>> 5);
-				byte bit3Value = (byte) ((bit3Mask & register[3]) >>> 2);
-				byte bit2Value = (byte) ((bit2Mask & register[3]) >>> 1);
+				byte bit32Value = (byte) (((firstByte8bitMask & register[0]) >>> 7)& 0b01111111);
+				byte bit8Value = (byte) (((bit8Mask & register[3]) >>> 7)& 0b01111111);
+				byte bit6Value = (byte) (((bit6Mask & register[3]) >>> 5)& 0b01111111);
+				byte bit3Value = (byte) (((bit3Mask & register[3]) >>> 2)& 0b01111111);
+				byte bit2Value = (byte) (((bit2Mask & register[3]) >>> 1)& 0b01111111);
 				byte bit1Value = (byte) ((bit1Mask & register[3]));
 
 				byte nextBit = (byte) (bit32Value ^ bit8Value ^ bit6Value ^ bit3Value ^ bit2Value ^ bit1Value);
